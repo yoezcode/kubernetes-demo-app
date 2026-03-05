@@ -43,7 +43,7 @@ List pods:
 
 Delete one pod:
 
-        kubectl delete pod
+        kubectl delete pod <podname>
 
 Kubernetes automatically creates a new one to maintain the desired state.
 
