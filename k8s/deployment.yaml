@@ -13,22 +13,25 @@ spec:
         app: flask-demo
     spec:
       containers:
-      - name: flask-demo
-        image: flask-demo:1.0
-        imagePullPolicy: Never
-        ports:
-        - containerPort: 5000
+        - name: flask-demo
+          image: flask-demo:3.0
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5000
+          env:
+            - name: APP_VERSION
+              value: "v3"
 
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: 5000
-          initialDelaySeconds: 5
-          periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 10
 
-        readinessProbe:
-          httpGet:
-            path: /health
-            port: 5000
-          initialDelaySeconds: 3
-          periodSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 3
+            periodSeconds: 5

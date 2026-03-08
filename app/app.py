@@ -1,5 +1,6 @@
 from flask import Flask
 import socket
+import os
 
 
 app = Flask(__name__)
@@ -7,7 +8,8 @@ app = Flask(__name__)
 @app.route("/")
 def hello():
     hostname = socket.gethostname()
-    return f"Hello from Pod: {hostname} - v2\n"
+    version = os.getenv("APP_VERSION", "v1")
+    return f"Hello from Pod: {hostname} - {version}\n"
 
 @app.route("/health")
 def health():
